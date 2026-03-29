@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Flare Simulation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Import Map for Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div id="ui-layer">
+        <header class="header">
+            <h1>SOLAR FLARE</h1>
+            <p class="subtitle">Real-time Cinematic Earth / Solar Event Simulation</p>
+        </header>
+
+        <main class="dashboard">
+            <div class="panel status-panel">
+                <h2>System Status</h2>
+                <div class="status-indicator">
+                    <div class="led" id="status-led"></div>
+                    <span id="status-text">NOMINAL - Normal Solar Activity</span>
+                </div>
+                <div class="metrics">
+                    <div class="metric">
+                        <span>Solar Wind Speed</span>
+                        <strong id="wind-speed">350 km/s</strong>
+                    </div>
+                    <div class="metric">
+                        <span>X-Ray Flux (GOES)</span>
+                        <strong id="xray-flux">A-Class Base</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel control-panel">
+                <h2>Event Controls</h2>
+                <button id="trigger-flare" class="btn primary-btn">INITIALIZE SCENARIO</button>
+                <div class="timeline">
+                    <div class="timeline-step" id="step-sun">1. Emission (CME)</div>
+                    <div class="timeline-step" id="step-transit">2. Transit to Earth</div>
+                    <div class="timeline-step" id="step-impact">3. Magnetosphere Impact</div>
+                </div>
+            </div>
+
+            <div class="panel impact-panel" id="impact-panel">
+                <h2>Impact Report</h2>
+                <ul class="impact-list">
+                    <li id="impact-radio">
+                        <span class="icon">📡</span>
+                        <div>
+                            <strong>Radio Frequency Blackout</strong>
+                            <p>HF radio communication disabled on sunlit side.</p>
+                        </div>
+                    </li>
+                    <li id="impact-station">
+                        <span class="icon">🛰️</span>
+                        <div>
+                            <strong>Space Station Risk</strong>
+                            <p>Increased atmospheric drag, radiation hazard for astronauts.</p>
+                        </div>
+                    </li>
+                    <li id="impact-grid">
+                        <span class="icon">⚡</span>
+                        <div>
+                            <strong>Power Grid Fluctuations</strong>
+                            <p>GIC (Geomagnetically Induced Currents) detected.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
