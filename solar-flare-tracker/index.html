@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güneş Patlaması Uyarı Sistemi</title>
+    <meta name="description" content="NOAA ve NASA tahminlerine dayanan, yaklaşan güneş patlamalarına yönelik gerçek zamanlı uyarı sistemi.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Güneş <span>Patlaması</span> Uyarısı</h1>
+            <p>NOAA SWPC ve NASA Verileriyle Gerçek Zamanlı Tehdit Analizi</p>
+        </header>
+
+        <section id="status-hero" class="hero-card glassmorphism loading">
+            <h2 id="threat-level">Veriler Yükleniyor...</h2>
+            <p id="threat-message">En son tahminler alınıyor</p>
+            <div class="pulse-ring"></div>
+        </section>
+
+        <main class="dashboard">
+            <div class="panel current-threats">
+                <h3>24 Saatlik Patlama İhtimali</h3>
+                <div class="card-grid">
+                    <div class="flare-card c-class" id="card-c">
+                        <h4>C-Sınıfı</h4>
+                        <div class="dial"><span id="prob-c">--%</span></div>
+                        <p>Küçük (Minimum etki)</p>
+                    </div>
+                    <div class="flare-card m-class" id="card-m">
+                        <h4>M-Sınıfı</h4>
+                        <div class="dial"><span id="prob-m">--%</span></div>
+                        <p>Orta (Radyo kesintileri)</p>
+                    </div>
+                    <div class="flare-card x-class" id="card-x">
+                        <h4>X-Sınıfı</h4>
+                        <div class="dial"><span id="prob-x">--%</span></div>
+                        <p>Şiddetli (Küresel kesintiler)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel forecast-timeline">
+                <h3>Çok Günlü Beklenti</h3>
+                <div class="timeline" id="forecast-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="panel expert-assessment">
+                <h3>Uzman Değerlendirmesi: Yaklaşık Tahmin ve Çarpışma (Peak) Süreci</h3>
+                <div class="assessment-content">
+                    <p class="forecast-p"><strong>Güncel Beklenti (%55 - %10):</strong> Gelecek 3 gün içinde en olası senaryo %55 ihtimalle daha zayıf bir <strong>M-Sınıfı</strong> patlamasıdır. Gerçek yıkıcı bir <strong>X-Sınıfı</strong> dalganın yaşanma ihtimali ise an itibarıyla %10'da tutulmaktadır.</p>
+                    
+                    <div class="impact-timeline">
+                        <div class="impact-step">
+                            <div class="impact-badge minor-badge">8 Dakika Sonra</div>
+                            <h4>İlk Vuruş (Radyo Kesintisi Zirvesi)</h4>
+                            <p>Patlama saptandıktan tam 8 dakika sonra radyasyon Dünya'ya ulaşır. Bu sadece güneşe bakan yarı kürede 1-2 saatlik geçici telsiz ve sinyal kayıpları yaşatır. Şebekeler güvendedir.</p>
+                        </div>
+                        <div class="impact-step warning-step">
+                            <div class="impact-badge danger-badge">48 - 72 Saat Sonra</div>
+                            <h4>Asıl Vuruş (Jeomanyetik Fırtına Zirvesi)</h4>
+                            <p>Elektronik sistemleri tehdit eden dev plazma bulutunun (CME) Dünya'ya ulaşması <strong>patlamadan tam 2 ila 3 gün sonra</strong> gerçekleşir. Yani uyduların körleştiği, asıl tehlikenin "Peak" yaptığı ana hazırlık yapmanız için önünüzde <strong>~48 Saatlik net bir güvenli pencere</strong> bulunur.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel scales-section">
+                <h3>Uzay Hava Durumu Ölçekleri</h3>
+                <div class="scales-grid">
+                    
+                    <div class="scale-card scale-g">
+                        <div class="scale-header">
+                            <h4>Jeomanyetik Fırtınalar (G-Ölçeği)</h4>
+                        </div>
+                        <p class="scale-desc">Dünya'nın manyetik alanındaki, genellikle CMEs (Koronal Kütle Atımları) kaynaklı bozulmaları ölçer.</p>
+                        <ul class="scale-list">
+                            <li><span class="badge badge-minor">G1 (Küçük)</span> Zayıf güç şebekesi dalgalanmaları; göçmen hayvanlar etkilenebilir. Yüksek enlemlerde auroralar görülür.</li>
+                            <li><span class="badge badge-med">G2 (Orta)</span> Yüksek enlemlerdeki güç sistemlerinde voltaj alarmları.</li>
+                            <li><span class="badge badge-strong">G3 (Güçlü)</span> Uydular için olası yönelim sorunları; radyo navigasyonunda kesintiler.</li>
+                            <li><span class="badge badge-severe">G4 (Şiddetli)</span> Güç sistemlerinde yaygın voltaj kontrol sorunları; uydu şarj sorunları.</li>
+                            <li><span class="badge badge-extreme">G5 (Aşırı)</span> Şebeke çökmeleri, trafo hasarları, uydu operasyonlarında tam kesinti.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="scale-card scale-s">
+                        <div class="scale-header">
+                            <h4>Güneş Radyasyon Fırtınaları (S-Ölçeği)</h4>
+                        </div>
+                        <p class="scale-desc">Güneş'ten gelen yüklü parçacıkların (protonların) yoğunluğunu ölçer.</p>
+                        <ul class="scale-list">
+                            <li><span class="badge badge-minor">S1-S2 (Kçk/Ort)</span> Yüksek enlem uçuşları için hafif radyasyon artışı.</li>
+                            <li><span class="badge badge-strong">S3 (Güçlü)</span> Uydularda donanımsal arızalar; astronotlar ve yüksek uçuş mürettebatı için radyasyon riski.</li>
+                            <li><span class="badge badge-extreme">S4-S5 (Şid/Aşr)</span> Uydu operasyonlarında kalıcı hasar riski; astronotlar için ciddi sağlık tehlikesi; tam radyo iletişimi kesintisi.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="scale-card scale-r">
+                        <div class="scale-header">
+                            <h4>Radyo Kesintileri (R-Ölçeği)</h4>
+                        </div>
+                        <p class="scale-desc">Güneş patlamalarından gelen X-ışınlarının Dünya iyonosferi üzerindeki etkisini ölçer. Flare sınıfıyla (A, B, C, M, X) ilişkilidir.</p>
+                        <ul class="scale-list">
+                            <li><span class="badge badge-minor">R1 (Küçük)</span> Yüksek frekanslı (HF) radyo sinyallerinde zayıf bozulmalar.</li>
+                            <li><span class="badge badge-med">R2 (Orta)</span> 10-15 dakika süren HF radyo sinyali kesintileri.</li>
+                            <li><span class="badge badge-strong">R3 (Güçlü)</span> Geniş alanlarda HF radyo kesintileri; düşük frekans navigasyon sinyallerinde bozulma.</li>
+                            <li><span class="badge badge-severe">R4 (Şiddetli)</span> Güneşe bakan tarafta yaklaşık bir saat süren HF radyo iletişimi kesintisi.</li>
+                            <li><span class="badge badge-extreme">R5 (Aşırı)</span> Birkaç saat süren tam HF radyo kesintileri; navigasyon sistemlerinde ciddi hatalar.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel calendar-panel">
+                <h3>Güneş Patlaması Takvimi</h3>
+                <p class="panel-desc">Güneş'te meydana gelen son patlamalar (En yeniden en eskiye). Kaynak: NASA DONKI</p>
+                <div class="calendar-list" id="calendar-container">
+                    <div class="loading-calendar">
+                        <div class="pulse-ring-small"></div>
+                        <p>Takvim verileri yüklenirken bekleyiniz...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel emergency-guide">
+                <h3>Büyük Bir Patlama Dünya'ya Yaklaşırken Ne Yapmalıyız?</h3>
+                <div class="guide-grid">
+                    <div class="guide-item">
+                        <div class="guide-icon">🔌</div>
+                        <div class="guide-content">
+                            <h4>Elektronikleri Prizden Çekin</h4>
+                            <p>Küresel şebeke dalgalanmalarına karşı bilgisayar, TV gibi hassas cihazları fişten çekin.</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">💾</div>
+                        <div class="guide-content">
+                            <h4>Verilerinizi Yedekleyin</h4>
+                            <p>Bulut hizmetleri çökebileceği için verilerinizi harici disklere veya çevrimdışı seçeneklere yedekleyin.</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">📻</div>
+                        <div class="guide-content">
+                            <h4>Radyo ve Fener Edinin</h4>
+                            <p>Elektrik ve internet kesintisinde gelişmeleri takip etmek için pilli bir radyo ve fener bulundurun.</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">🔋</div>
+                        <div class="guide-content">
+                            <h4>Alternatif İletişim Planı</h4>
+                            <p>Cep telefonlarının ve GPS'in saatlerce kesilebileceğini unutmayın. Ailenizle buluşma noktası belirleyin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel data-meta">
+                <p>Son Güncelleme: <span id="last-updated">--</span></p>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
